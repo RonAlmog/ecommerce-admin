@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import prismadb from "@/lib/prismadb";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -52,50 +51,52 @@ const StoreModal = () => {
   };
 
   return (
-    <Modal
-      title="Create store"
-      description="Add a new store to manage products and categories"
-      isOpen={storeModal.isOpen}
-      onClose={storeModal.onClose}
-    >
-      <div>
-        <div className="space-y-4 py-2 pb-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isLoading}
-                        placeholder="E-commerce"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button
-                  variant="outline"
-                  onClick={storeModal.onClose}
-                  disabled={isLoading}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" disabled={isLoading}>
-                  Continue
-                </Button>
-              </div>
-            </form>
-          </Form>
+    <>
+      <Modal
+        title="Create store"
+        description="Add a new store to manage products and categories"
+        isOpen={storeModal.isOpen}
+        onClose={storeModal.onClose}
+      >
+        <div>
+          <div className="space-y-4 py-2 pb-4">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled={isLoading}
+                          placeholder="E-commerce"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+                  <Button
+                    variant="outline"
+                    onClick={storeModal.onClose}
+                    disabled={isLoading}
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="submit" disabled={isLoading}>
+                    Continue
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
+    </>
   );
 };
 
