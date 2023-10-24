@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -26,6 +27,7 @@ const formSchema = z.object({
 
 const StoreModal = () => {
   const storeModal = useStoreModal();
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +44,9 @@ const StoreModal = () => {
       const response = await axios.post("/api/stores", values);
       console.log(response.data);
       toast.success("Store created");
+      window.location.assign(`/${response.data.id}`);
+      // would work if it was not a modal
+      // router.push(`/${response.data.id}`);
     } catch (error) {
       toast.error("Something went wrong...");
       console.log(error);
