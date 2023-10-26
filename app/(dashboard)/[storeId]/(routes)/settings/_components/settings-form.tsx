@@ -1,6 +1,7 @@
 "use client";
 
 import Heading from "@/components/heading";
+import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -57,6 +58,12 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
 
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={() => {}}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store settings" />
         <Button
