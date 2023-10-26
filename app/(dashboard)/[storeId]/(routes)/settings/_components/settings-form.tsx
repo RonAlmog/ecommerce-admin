@@ -1,5 +1,6 @@
 "use client";
 
+import ApiAlert from "@/components/api-alert";
 import Heading from "@/components/heading";
 import AlertModal from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
@@ -56,12 +57,29 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
     }
   };
 
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/stores/${params.storeId}`);
+      router.refresh();
+      router.push("/");
+      toast.success("Store deleted");
+    } catch (error) {
+      toast.error(
+        "Make sure you remove all your products and categories first"
+      );
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
       <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
-        onConfirm={() => {}}
+        onConfirm={onDelete}
         loading={loading}
       />
       <div className="flex items-center justify-between">
@@ -106,6 +124,11 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
           </Button>
         </form>
       </Form>
+      <ApiAlert
+        title="NEXT_PUBLIC_API_URL"
+        description="test test here and htere"
+        variant="public"
+      />
     </>
   );
 };
