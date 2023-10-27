@@ -126,7 +126,7 @@ const SettingsForm = ({ initialData }: SettingsFormProps) => {
       </Form>
       <ApiAlert
         title="NEXT_PUBLIC_API_URL"
-        description="test test here and htere"
+        description={`${origin}/api/${params.storeId}`}
         variant="public"
       />
     </>
