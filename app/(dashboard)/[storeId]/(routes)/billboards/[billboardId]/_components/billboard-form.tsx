@@ -1,6 +1,5 @@
 "use client";
 
-import ApiAlert from "@/components/api-alert";
 import Heading from "@/components/heading";
 import ImageUpload from "@/components/image-upload";
 import AlertModal from "@/components/modals/alert-modal";
