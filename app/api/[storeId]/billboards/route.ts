@@ -16,7 +16,7 @@ export async function POST(
     }
     const { label, imageUrl } = body;
     if (!label) {
-      return new NextResponse("Name is required", { status: 400 });
+      return new NextResponse("Label is required", { status: 400 });
     }
     if (!imageUrl) {
       return new NextResponse("image url is required", { status: 400 });
