@@ -10,12 +10,21 @@ import {
 import { BillboardColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
+import toast from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
 
 interface CellActionProps {
   data: BillboardColumn;
 }
 
 const CellAction = ({ data }: CellActionProps) => {
+  const router = useRouter();
+  const params = useParams();
+  const onCopy = (id: string) => {
+    navigator.clipboard.writeText(id);
+    toast.success("Copied!");
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -26,11 +35,15 @@ const CellAction = ({ data }: CellActionProps) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onCopy(data.id)}>
           <Copy className="mr-2 h-4 w-4" />
           Copy Id
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            router.push(`/${params.storeId}/billboards/${data.id}`)
+          }
+        >
           <Edit className="mr-2 h-4 w-4" />
           Update
         </DropdownMenuItem>
