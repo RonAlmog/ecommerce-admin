@@ -106,7 +106,7 @@ export async function DELETE(
 
     const billboard = await prismadb.billboard.delete({
       where: {
-        id: params.storeId,
+        id: params.billboardId,
       },
     });
 
