@@ -90,14 +90,14 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/categories/${params.billboardId}`
+        `/api/${params.storeId}/categories/${params.categoryId}`
       );
       router.refresh();
       router.push(`/${params.storeId}/categories`);
       toast.success("Category deleted");
     } catch (error) {
       toast.error(
-        "Make sure you remove all your categories using this billboard first"
+        "Make sure you remove all your products using this billboard first"
       );
     } finally {
       setLoading(false);
