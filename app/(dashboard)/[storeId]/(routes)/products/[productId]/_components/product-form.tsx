@@ -124,11 +124,9 @@ const ProductForm = ({
       await axios.delete(`/api/${params.storeId}/products/${params.productId}`);
       router.refresh();
       router.push(`/${params.storeId}/products`);
-      toast.success("Store deleted");
+      toast.success("Product deleted");
     } catch (error) {
-      toast.error(
-        "Make sure you remove all your categories using this product first"
-      );
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -210,7 +208,7 @@ const ProductForm = ({
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>Price</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
