@@ -1,7 +1,9 @@
+import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import { getSalesCount } from "@/actions/get-sales-count";
 import { getStockCount } from "@/actions/get-stock-count";
 import { getTotalRevenue } from "@/actions/get-total-revenue";
 import Heading from "@/components/heading";
+import Overview from "@/components/overview";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import prismadb from "@/lib/prismadb";
@@ -16,12 +18,8 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
   const totalRevenue = await getTotalRevenue(params.storeId);
   const salesCount = await getSalesCount(params.storeId);
   const stockCount = await getStockCount(params.storeId);
+  const graphRevenue = await getGraphRevenue(params.storeId);
 
-  const store = await prismadb.store.findUnique({
-    where: {
-      id: params.storeId,
-    },
-  });
   return (
     <div className="flex flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -67,7 +65,7 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <Overview data={[]} />
+            <Overview data={graphRevenue} />
           </CardContent>
         </Card>
       </div>
