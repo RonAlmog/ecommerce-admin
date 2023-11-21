@@ -62,6 +62,14 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
             </CardContent>
           </Card>
         </div>
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview data={[]} />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
